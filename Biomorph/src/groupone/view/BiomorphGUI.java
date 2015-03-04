@@ -24,19 +24,22 @@ import javax.swing.KeyStroke;
 import javax.swing.WindowConstants;
 
 /**
- * 
+ * Graphical User Interface for the Biomorph Project
  * @author Kiel Pykett
  * @version 04.03.2015
  */
 public class BiomorphGUI {
+	// Something to produce Biomorphs
 	private BiomorphFactory factory;
+	
 	private JFrame  mainframe;
+	
+	// Adjustable sliders
 	private LabelledSlider heightSlider;
 	private LabelledSlider widthSlider;
 	private LabelledSlider depthSlider;
 	
 	public BiomorphGUI() {
-		// A factory to produce Biomorphs
 		factory = new BiomorphFactory();
 
 		// GUI components
@@ -45,7 +48,7 @@ public class BiomorphGUI {
 		widthSlider  = new LabelledSlider("Width: ",  5, 1, 10, 1);
 		depthSlider  = new LabelledSlider("Depth: ",  5, 1, 10, 1);
 		
-		// Menu bar & menu components
+		// Menu components
 		JMenuBar menubar  = new JMenuBar();
 		JMenu fileMenu    = new JMenu("File");
 		JMenu helpMenu    = new JMenu("Help");
@@ -64,7 +67,6 @@ public class BiomorphGUI {
 		// Menu properties
 		fileMenu.setMnemonic(KeyEvent.VK_F);
 		fileMenu.getAccessibleContext().setAccessibleDescription("File options");
-		
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 		helpMenu.getAccessibleContext().setAccessibleDescription("Help options");
 		
@@ -73,18 +75,19 @@ public class BiomorphGUI {
 		menubar.add(helpMenu);
 		
 		// Add menu items to the file menu
-		// Load
+		// Menu Item : Load
 		JMenuItem loadItem = new JMenuItem("Load");
 		loadItem.setAccelerator(KeyStroke.getKeyStroke(
-				KeyEvent.VK_L, ActionEvent.CTRL_MASK));
+				KeyEvent.VK_L, ActionEvent.CTRL_MASK));			// Perform action when CTRL + L is pressed
 		loadItem.getAccessibleContext().setAccessibleDescription("Load a saved Biomorph");
 		
-		// Save
+		// Menu Item : Save
 		JMenuItem saveItem = new JMenuItem("Save");
 		saveItem.setAccelerator(KeyStroke.getKeyStroke(
-				KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+				KeyEvent.VK_S, ActionEvent.CTRL_MASK));			// Perform action when CTRL + S is pressed
 		saveItem.getAccessibleContext().setAccessibleDescription("Save the current Biomorph");
 		
+		// Add the menu items to the file menu
 		fileMenu.add(loadItem);
 		fileMenu.add(saveItem);
 		
@@ -94,6 +97,7 @@ public class BiomorphGUI {
 				KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		exitItem.getAccessibleContext().setAccessibleDescription("Exit the application");
 		
+		// Add the menu items to the help menu
 		helpMenu.add(exitItem);
 		
 		// Slider properties
@@ -104,7 +108,6 @@ public class BiomorphGUI {
 		// Button properties
 		btnRandom.setText("Generate Random Biomorph");
 		btnRandom.setToolTipText("Generates a new random Biomorph.");
-
 		btnQuit.setText("Quit");
 		btnQuit.setToolTipText("Quits the application.");
 
@@ -120,44 +123,48 @@ public class BiomorphGUI {
 		sliderBox.setLayout(new BorderLayout());
 
 		// Add components to containers
-		commandBox.add(btnRandom, BorderLayout.WEST);
-		commandBox.add(btnQuit, BorderLayout.EAST);
+		commandBox.add(btnRandom, BorderLayout.WEST);				// Put the generate random button on the left
+		commandBox.add(btnQuit, BorderLayout.EAST);					// Put the exit button on the right
 		
-		sliderBox.add(heightSlider, BorderLayout.NORTH);
-		sliderBox.add(widthSlider, BorderLayout.CENTER);
-		sliderBox.add(depthSlider, BorderLayout.SOUTH);
+		sliderBox.add(heightSlider, BorderLayout.NORTH);			// Put the height slider on top
+		sliderBox.add(widthSlider, BorderLayout.CENTER);			// Put the width slider in the middle
+		sliderBox.add(depthSlider, BorderLayout.SOUTH);				// Put the depth slider on the bottom
 		
-		topPanel.add(menubar, BorderLayout.NORTH);
-		topPanel.add(sliderBox, BorderLayout.SOUTH);
+		topPanel.add(menubar, BorderLayout.NORTH);					// Put the menubar on top
+		topPanel.add(sliderBox, BorderLayout.SOUTH);				// Put the sliders on the bottom
 		
-		mainframe.add(topPanel, BorderLayout.NORTH);
-		mainframe.add(commandBox, BorderLayout.SOUTH);
+		mainframe.add(topPanel, BorderLayout.NORTH);				// Put the menu & sliders on top
+		mainframe.add(commandBox, BorderLayout.SOUTH);				// Put the command box on the bottom
 
 		// Event handlers
 		mainframe.setDefaultCloseOperation(
 				WindowConstants.DO_NOTHING_ON_CLOSE);
-
+		
+		// When the "close" button is pressed
 		mainframe.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				exit();
 			}
 		});
-
+		
+		// When the "exit" button is pressed
 		btnQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				exit();
 			}
 		});
-
+		
+		// When the "exit" option is selected from the menu
+		exitItem.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						exit();
+					}
+				});
+		
+		// When the "random" button is pressed
 		btnRandom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainframe.repaint();
-			}
-		});
-
-		exitItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				exit();
 			}
 		});
 		
