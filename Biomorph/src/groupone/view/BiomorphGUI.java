@@ -31,13 +31,19 @@ import javax.swing.WindowConstants;
 public class BiomorphGUI {
 	private BiomorphFactory factory;
 	private JFrame  mainframe;
+	private LabelledSlider heightSlider;
+	private LabelledSlider widthSlider;
+	private LabelledSlider depthSlider;
 	
 	public BiomorphGUI() {
 		// A factory to produce Biomorphs
 		factory = new BiomorphFactory();
 
 		// GUI components
-		mainframe = new JFrame();
+		mainframe    = new JFrame();
+		heightSlider = new LabelledSlider("Height: ", 5, 1, 10, 1);
+		widthSlider  = new LabelledSlider("Width: ",  5, 1, 10, 1);
+		depthSlider  = new LabelledSlider("Depth: ",  5, 1, 10, 1);
 		
 		// Menu bar & menu components
 		JMenuBar menubar  = new JMenuBar();
@@ -46,7 +52,9 @@ public class BiomorphGUI {
 
 		JButton btnRandom = new JButton();
 		JButton btnQuit	  = new JButton();
+		JPanel topPanel   = new JPanel();
 		JPanel commandBox = new JPanel();
+		JPanel sliderBox  = new JPanel();
 
 		// Component properties
 		// Frame properties
@@ -88,6 +96,11 @@ public class BiomorphGUI {
 		
 		helpMenu.add(exitItem);
 		
+		// Slider properties
+		heightSlider.setToolTipText("Manipulate the height of the Biomorph");
+		widthSlider.setToolTipText("Manipulate the width of the Biomorph");
+		depthSlider.setToolTipText("Manipulate the depth of the Biomorph");
+		
 		// Button properties
 		btnRandom.setText("Generate Random Biomorph");
 		btnRandom.setToolTipText("Generates a new random Biomorph.");
@@ -96,16 +109,28 @@ public class BiomorphGUI {
 		btnQuit.setToolTipText("Quits the application.");
 
 		// Component containers
+		topPanel.setBorder(BorderFactory.createEtchedBorder());
 		commandBox.setBorder(BorderFactory.createEtchedBorder());
+		sliderBox.setBorder(BorderFactory.createEmptyBorder());
 
 		// Specify Layout Managers
 		mainframe.setLayout(new BorderLayout());
+		topPanel.setLayout(new BorderLayout());
 		commandBox.setLayout(new BorderLayout());
+		sliderBox.setLayout(new BorderLayout());
 
 		// Add components to containers
 		commandBox.add(btnRandom, BorderLayout.WEST);
 		commandBox.add(btnQuit, BorderLayout.EAST);
-		mainframe.add(menubar, BorderLayout.NORTH);
+		
+		sliderBox.add(heightSlider, BorderLayout.NORTH);
+		sliderBox.add(widthSlider, BorderLayout.CENTER);
+		sliderBox.add(depthSlider, BorderLayout.SOUTH);
+		
+		topPanel.add(menubar, BorderLayout.NORTH);
+		topPanel.add(sliderBox, BorderLayout.SOUTH);
+		
+		mainframe.add(topPanel, BorderLayout.NORTH);
 		mainframe.add(commandBox, BorderLayout.SOUTH);
 
 		// Event handlers
@@ -174,7 +199,6 @@ public class BiomorphGUI {
 
 		int x7 = b.getGene(7).getXPos();
 		int y7 = b.getGene(7).getYPos();
-
 
 		g.drawLine(x0, y0, x1, y1);
 		g.drawLine(x1, y1, x2, y2);
