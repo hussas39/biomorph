@@ -7,14 +7,14 @@ package groupone.model;
  */
 public class Colour {
 	// Standard colours
-	public static final Colour RED     = new Colour(1.0f,0.0f,0.0f);
-	public static final Colour GREEN   = new Colour(0.0f,1.0f,0.0f);
-	public static final Colour BLUE    = new Colour(0.0f,0.0f,1.0f);
-	public static final Colour YELLOW  = new Colour(1.0f,1.0f,0.0f);
-	public static final Colour PINK    = new Colour(1.0f,0.0f,1.0f);
-	public static final Colour CYAN    = new Colour(0.0f,1.0f,1.0f);
-	public static final Colour BLACK   = new Colour(0.0f,0.0f,0.0f);
-	public static final Colour WHITE   = new Colour(1.0f,1.0f,1.0f);
+	public static final Colour RED     = new Colour(1.0f, 0.0f, 0.0f);
+	public static final Colour GREEN   = new Colour(0.0f, 1.0f, 0.0f);
+	public static final Colour BLUE    = new Colour(0.0f, 0.0f, 1.0f);
+	public static final Colour YELLOW  = new Colour(1.0f, 1.0f, 0.0f);
+	public static final Colour PINK    = new Colour(1.0f, 0.0f, 1.0f);
+	public static final Colour CYAN    = new Colour(0.0f, 1.0f, 1.0f);
+	public static final Colour BLACK   = new Colour(0.0f, 0.0f, 0.0f);
+	public static final Colour WHITE   = new Colour(1.0f, 1.0f, 1.0f);
 	
 	// RGB variables
 	private float red;
