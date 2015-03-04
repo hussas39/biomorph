@@ -1,5 +1,10 @@
 package groupone.model;
 
+/**
+ * A class to model the points of a Biomorph.
+ * @author Kiel Pykett
+ * @version 04.03.2015 
+ */
 public class Point {
 	// X Coordinate
 	private int xPos;
@@ -18,7 +23,7 @@ public class Point {
 	
 	/**
 	 * Return the value of the x coordinate.
-	 * @return xPos : int.
+	 * @return int
 	 */
 	public int getXPos() {
 		return xPos;
@@ -26,7 +31,7 @@ public class Point {
 	
 	/**
 	 * Return the value of the y coordinate.
-	 * @return yPos : int.
+	 * @return int
 	 */
 	public int getYPos() {
 		return yPos;
@@ -34,7 +39,7 @@ public class Point {
 	
 	/**
 	 * Set the value of the x coordinate.
-	 * @param x : int.
+	 * @param x - The x co-ordinate of the point
 	 */
 	public void setXPos(int x) {
 		xPos = x;
@@ -42,7 +47,7 @@ public class Point {
 	
 	/**
 	 * Set the value of the y coordinate.
-	 * @param y : int.
+	 * @param y - The y co-ordinate of the point
 	 */
 	public void setYPos(int y) {
 		yPos = y;

@@ -18,14 +18,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-public class BiomorphGUI extends JFrame {
+public class BiomorphGUI {
 	private BiomorphFactory factory;
+	private JFrame  mainframe = new JFrame();
 	
 	public BiomorphGUI() {
-		super();
-		setTitle("Group One Biomorph : Prototype");
-		setSize(700, 700);
-
 		// A factory to produce Biomorphs
 		factory = new BiomorphFactory();
 
@@ -35,6 +32,9 @@ public class BiomorphGUI extends JFrame {
 		JPanel commandBox = new JPanel();
 
 		// Component properties
+		mainframe.setTitle("Group One Biomorph");
+		mainframe.setSize(700, 700);
+		
 		btnRandom.setText("Generate Random Biomorph");
 		btnRandom.setToolTipText("Generates a new random Biomorph.");
 
@@ -45,19 +45,19 @@ public class BiomorphGUI extends JFrame {
 		commandBox.setBorder(BorderFactory.createEtchedBorder());
 
 		// Specify Layout Managers
-		setLayout(new BorderLayout());
+		mainframe.setLayout(new BorderLayout());
 		commandBox.setLayout(new BorderLayout());
 
 		// Add components to containers
 		commandBox.add(btnRandom, BorderLayout.WEST);
 		commandBox.add(btnQuit, BorderLayout.EAST);
-		add(commandBox, BorderLayout.SOUTH);
+		mainframe.add(commandBox, BorderLayout.SOUTH);
 
 		// Event handlers
-		setDefaultCloseOperation(
+		mainframe.setDefaultCloseOperation(
 				WindowConstants.DO_NOTHING_ON_CLOSE);
 
-		addWindowListener(new WindowAdapter() {
+		mainframe.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				exit();
 			}
@@ -71,13 +71,12 @@ public class BiomorphGUI extends JFrame {
 
 		btnRandom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				repaint();
+				mainframe.repaint();
 			}
 		});
 
 		// Display the GUI
-		
-		setVisible(true);
+		mainframe.setVisible(true);
 	}
 
 	public static void main(String args[]) {
@@ -88,7 +87,7 @@ public class BiomorphGUI extends JFrame {
 	 * Draw the Biomorph.
 	 */
 	public void paint(Graphics g) {
-		super.paint(g);
+		mainframe.paint(g);
 		Biomorph b = new Biomorph(factory.createRandomBiomorph());
 
 		int x0 = b.getGene(0).getXPos();
