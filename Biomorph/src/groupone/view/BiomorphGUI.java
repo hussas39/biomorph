@@ -8,33 +8,87 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import javax.swing.WindowConstants;
 
+/**
+ * 
+ * @author Kiel Pykett
+ * @version 04.03.2015
+ */
 public class BiomorphGUI {
 	private BiomorphFactory factory;
-	private JFrame  mainframe = new JFrame();
+	private JFrame  mainframe;
 	
 	public BiomorphGUI() {
 		// A factory to produce Biomorphs
 		factory = new BiomorphFactory();
 
 		// GUI components
+		mainframe = new JFrame();
+		
+		// Menu bar & menu components
+		JMenuBar menubar  = new JMenuBar();
+		JMenu fileMenu    = new JMenu("File");
+		JMenu helpMenu    = new JMenu("Help");
+
 		JButton btnRandom = new JButton();
 		JButton btnQuit	  = new JButton();
 		JPanel commandBox = new JPanel();
 
 		// Component properties
+		// Frame properties
 		mainframe.setTitle("Group One Biomorph");
 		mainframe.setSize(700, 700);
 		
+		// Menu properties
+		fileMenu.setMnemonic(KeyEvent.VK_F);
+		fileMenu.getAccessibleContext().setAccessibleDescription("File options");
+		
+		helpMenu.setMnemonic(KeyEvent.VK_H);
+		helpMenu.getAccessibleContext().setAccessibleDescription("Help options");
+		
+		// Add the menus to the menubar
+		menubar.add(fileMenu);
+		menubar.add(helpMenu);
+		
+		// Add menu items to the file menu
+		// Load
+		JMenuItem loadItem = new JMenuItem("Load");
+		loadItem.setAccelerator(KeyStroke.getKeyStroke(
+				KeyEvent.VK_L, ActionEvent.CTRL_MASK));
+		loadItem.getAccessibleContext().setAccessibleDescription("Load a saved Biomorph");
+		
+		// Save
+		JMenuItem saveItem = new JMenuItem("Save");
+		saveItem.setAccelerator(KeyStroke.getKeyStroke(
+				KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+		saveItem.getAccessibleContext().setAccessibleDescription("Save the current Biomorph");
+		
+		fileMenu.add(loadItem);
+		fileMenu.add(saveItem);
+		
+		// Add menu items to the help menu
+		JMenuItem exitItem = new JMenuItem("Exit");
+		exitItem.setAccelerator(KeyStroke.getKeyStroke(
+				KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+		exitItem.getAccessibleContext().setAccessibleDescription("Exit the application");
+		
+		helpMenu.add(exitItem);
+		
+		// Button properties
 		btnRandom.setText("Generate Random Biomorph");
 		btnRandom.setToolTipText("Generates a new random Biomorph.");
 
@@ -51,6 +105,7 @@ public class BiomorphGUI {
 		// Add components to containers
 		commandBox.add(btnRandom, BorderLayout.WEST);
 		commandBox.add(btnQuit, BorderLayout.EAST);
+		mainframe.add(menubar, BorderLayout.NORTH);
 		mainframe.add(commandBox, BorderLayout.SOUTH);
 
 		// Event handlers
@@ -75,6 +130,12 @@ public class BiomorphGUI {
 			}
 		});
 
+		exitItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				exit();
+			}
+		});
+		
 		// Display the GUI
 		mainframe.setVisible(true);
 	}
@@ -87,7 +148,7 @@ public class BiomorphGUI {
 	 * Draw the Biomorph.
 	 */
 	public void paint(Graphics g) {
-		mainframe.paint(g);
+		paint(g);
 		Biomorph b = new Biomorph(factory.createRandomBiomorph());
 
 		int x0 = b.getGene(0).getXPos();
