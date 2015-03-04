@@ -4,13 +4,13 @@ public class Biomorph {
 	// Maximum number of permitted genes
 	static final int MAX_GENES = 8;
 	// Array to store the Biomorph's genes coordinates
-	private Coordinate2D[] genes;
+	private Point[] genes;
 	
 	/**
 	 * Biomorph constructor.
 	 * @param genes - An array of Coordinates to act as the genes.	
 	 */
-	public Biomorph(Coordinate2D[] genes) {
+	public Biomorph(Point[] genes) {
 		this.genes = genes;
 	}
 	
@@ -18,7 +18,7 @@ public class Biomorph {
 	 * Returns the array storing the genes.
 	 * @return : genes.
 	 */
-	public Coordinate2D[] getGenes() {
+	public Point[] getGenes() {
 		return genes;
 	}
 	
@@ -35,7 +35,7 @@ public class Biomorph {
 	 * @param index : The gene whose coordinates are to be returned.
 	 * @return genes[index] : The coordinate object stored in the genes array at <i>index</i>.
 	 */
-	public Coordinate2D getGene(int index) {
+	public Point getGene(int index) {
 		return genes[index];
 	}
 }

@@ -12,18 +12,18 @@ public class BiomorphFactory {
 	// Random number generator
 	private Random rnd;
 	// Array of gene coordinates
-	private Coordinate2D[] genes;
+	private Point[] genes;
 	
 	public BiomorphFactory() {
 		rnd = new Random(SEED);
-		genes = new Coordinate2D[Biomorph.MAX_GENES];
+		genes = new Point[Biomorph.MAX_GENES];
 	}
 	
 	/**
 	 * Creates a random Biomorph.
 	 * @return A random Biomorph.
 	 */
-	public Coordinate2D[] createRandomBiomorph() {
+	public Point[] createRandomBiomorph() {
 		
 		for (int i = 0; i < Biomorph.MAX_GENES; i++) {
 			// Ensure values are between 0 and 700
@@ -31,7 +31,7 @@ public class BiomorphFactory {
 			int yPos = rnd.nextInt(MAX_Y_COORD_VALUE);
 			
 			// Create a new Coordinate2D object with the random numbers and enter it into the array
-			genes[i] = new Coordinate2D(xPos, yPos);
+			genes[i] = new Point(xPos, yPos);
 		}
 				
 		return genes;

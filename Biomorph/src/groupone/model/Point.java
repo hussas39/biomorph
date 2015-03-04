@@ -1,6 +1,6 @@
 package groupone.model;
 
-public class Coordinate2D {
+public class Point {
 	// X Coordinate
 	private int xPos;
 	// Y Coordinate
@@ -11,7 +11,7 @@ public class Coordinate2D {
 	 * @param x : The value of the x coordinate.
 	 * @param y : The value of the y coordinate.
 	 */
-	public Coordinate2D(int x, int y) {
+	public Point(int x, int y) {
 		xPos = x;
 		yPos = y;
 	}
