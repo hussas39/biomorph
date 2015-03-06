@@ -143,28 +143,28 @@ public class BiomorphGUI {
 		// When the "close" button is pressed
 		mainframe.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				exit();
+				exit();												// Call the exit function
 			}
 		});
 		
 		// When the "exit" button is pressed
 		btnQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				exit();
+				exit();												// Call the exit function
 			}
 		});
 		
 		// When the "exit" option is selected from the menu
 		exitItem.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						exit();
+						exit();										// Call the exit function
 					}
 				});
 		
 		// When the "random" button is pressed
 		btnRandom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mainframe.repaint();
+				mainframe.repaint();								// Redraw a random Biomorph
 			}
 		});
 		
@@ -180,6 +180,9 @@ public class BiomorphGUI {
 	 * Draw the Biomorph.
 	 */
 	public void paint(Graphics g) {
+		/**
+		 * NEEDS CHANGING
+		 */
 		paint(g);
 		Biomorph b = new Biomorph(factory.createRandomBiomorph());
 
